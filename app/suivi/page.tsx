@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { OrderTracker } from "@/components/OrderTracker";
@@ -13,7 +14,9 @@ export default function SuiviPage() {
     <>
       <Header />
       <main>
-        <OrderTracker />
+        <Suspense fallback={<div className="min-h-[80vh] bg-cream" />}>
+          <OrderTracker />
+        </Suspense>
       </main>
       <Footer />
     </>
