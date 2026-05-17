@@ -1,7 +1,7 @@
 "use client";
-
 import * as React from "react";
-import { ShoppingCart, ShieldCheck, Menu, X } from "lucide-react";
+import Image from "next/image";
+import { ShoppingCart, Phone, Mail, Menu, X, Star } from "lucide-react";
 import { useCartStore } from "@/store/cart";
 import { CartDrawer } from "@/components/CartDrawer";
 import { cn } from "@/lib/utils";
@@ -9,126 +9,105 @@ import { cn } from "@/lib/utils";
 export function Header() {
   const { totalItems } = useCartStore();
   const [drawerOpen, setDrawerOpen] = React.useState(false);
-  const [mobileNavOpen, setMobileNavOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
-  const [badgeBump, setBadgeBump] = React.useState(false);
-  const itemCount = totalItems();
-  const prevCount = React.useRef(itemCount);
+  const count = totalItems();
 
   React.useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const fn = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  React.useEffect(() => {
-    if (itemCount > prevCount.current) {
-      setBadgeBump(true);
-      const t = setTimeout(() => setBadgeBump(false), 400);
-      prevCount.current = itemCount;
-      return () => clearTimeout(t);
-    }
-    prevCount.current = itemCount;
-  }, [itemCount]);
-
   const navLinks = [
-    { label: "Nos Services", href: "#products" },
-    { label: "Langues", href: "#languages" },
-    { label: "FAQ", href: "#faq" },
-    { label: "Suivi commande", href: "/suivi" },
+    { label: "Accueil",      href: "/" },
+    { label: "Nos Services", href: "/services" },
+    { label: "Blog",         href: "#blog" },
+    { label: "Contact",      href: "/devis" },
   ];
 
   return (
     <>
-      <header
-        className={cn(
-          "sticky top-0 z-40 border-b border-white/8 bg-navy transition-shadow duration-300",
-          scrolled && "shadow-[0_2px_40px_rgba(0,0,0,0.4)]"
-        )}
-      >
-        <div className="mx-auto flex h-[72px] max-w-screen-xl items-center justify-between px-6">
-          {/* Logo */}
-          <a href="/" className="flex items-center gap-2.5 font-serif text-[22px] font-bold text-white no-underline tracking-tight">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange">
-              <ShieldCheck className="h-[18px] w-[18px] text-white" />
+      {/* Top bar — phone + email + Trustpilot */}
+      <div className="bg-navy text-white/70 text-xs">
+        <div className="mx-auto max-w-screen-xl px-6 py-2 flex items-center justify-between flex-wrap gap-2">
+          <div className="flex items-center gap-5 flex-wrap">
+            <a href="tel:+33187665103" className="flex items-center gap-1.5 hover:text-gold transition-colors">
+              <Phone className="h-3 w-3" />(00) 875 784 5682
+            </a>
+            <a href="mailto:info@globalbeglaubigung.com" className="flex items-center gap-1.5 hover:text-gold transition-colors">
+              <Mail className="h-3 w-3" />info@globalbeglaubigung.com
+            </a>
+          </div>
+          {/* Trustpilot widget */}
+          <a href="https://fr.trustpilot.com" target="_blank" rel="noopener noreferrer"
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <span className="text-[11px] text-white/60">Excellent</span>
+            <div className="flex items-center gap-0.5">
+              {[...Array(5)].map((_, i) => (
+                <div key={i} className="flex h-4 w-4 items-center justify-center bg-[#00b67a]">
+                  <Star className="h-2.5 w-2.5 fill-white text-white" />
+                </div>
+              ))}
             </div>
-            CertifyTrad
+            <span className="text-[11px] text-white/60">778 avis sur</span>
+            <span className="font-bold text-[11px] text-white">Trustpilot</span>
+          </a>
+        </div>
+      </div>
+
+      {/* Main header */}
+      <header className={cn(
+        "sticky top-0 z-40 bg-white transition-shadow duration-300",
+        scrolled ? "shadow-md" : "border-b border-gray-100"
+      )}>
+        <div className="mx-auto max-w-screen-xl px-6 h-20 flex items-center justify-between gap-6">
+          <a href="/" className="flex-shrink-0">
+            <Image src="/logo.png" alt="Global Beglaubigung" width={200} height={60} className="h-14 w-auto object-contain" priority />
           </a>
 
-          {/* Desktop Nav */}
-          <nav className="hidden items-center gap-1 md:flex">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="rounded-lg px-3.5 py-2 text-sm font-medium text-white/75 transition-colors hover:bg-white/7 hover:text-white"
-              >
-                {link.label}
+          <nav className="hidden lg:flex items-center gap-1">
+            {navLinks.map((l) => (
+              <a key={l.label} href={l.href}
+                className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-navy rounded-lg transition-colors hover:bg-gray-50">
+                {l.label}
               </a>
             ))}
           </nav>
 
-          {/* Actions */}
           <div className="flex items-center gap-3">
-            {/* Cart button */}
-            <button
-              onClick={() => setDrawerOpen(true)}
-              className="relative flex h-11 w-11 items-center justify-center rounded-xl border border-white/8 bg-white/8 text-white transition-colors hover:bg-white/14"
-              title="Voir le panier"
-            >
+            <button onClick={() => setDrawerOpen(true)}
+              className="relative flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-gray-600 hover:border-gold/40 hover:text-navy transition-all">
               <ShoppingCart className="h-5 w-5" />
-              {itemCount > 0 && (
-                <span
-                  className={cn(
-                    "absolute -right-1.5 -top-1.5 flex h-[18px] min-w-[18px] items-center justify-center rounded-full border-2 border-navy bg-orange px-0.5 text-[10px] font-bold text-white",
-                    badgeBump && "animate-bump"
-                  )}
-                >
-                  {itemCount}
+              {count > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-gold text-[10px] font-bold text-white">
+                  {count}
                 </span>
               )}
             </button>
-
-            {/* CTA */}
-            <button
-              onClick={() => setDrawerOpen(true)}
-              className="hidden rounded-xl bg-orange px-5 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-px hover:bg-orange-light hover:shadow-[0_4px_20px_rgba(245,124,0,0.4)] sm:block"
-            >
-              Nouvelle Commande
-            </button>
-
-            {/* Mobile hamburger */}
-            <button
-              className="flex h-10 w-10 items-center justify-center rounded-lg text-white md:hidden"
-              onClick={() => setMobileNavOpen((v) => !v)}
-            >
-              {mobileNavOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            <a href="/devis"
+              className="hidden sm:flex items-center gap-2 rounded-full bg-navy px-5 py-2.5 text-sm font-bold text-white hover:bg-navy-light transition-colors whitespace-nowrap">
+              OBTENIR UN DEVIS
+            </a>
+            <button className="lg:hidden p-2 text-gray-600" onClick={() => setMobileOpen(v => !v)}>
+              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Nav Dropdown */}
-        {mobileNavOpen && (
-          <div className="border-t border-white/8 bg-navy px-6 pb-4 md:hidden">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={() => setMobileNavOpen(false)}
-                className="block border-b border-white/8 py-4 text-lg font-medium text-white/75 hover:text-white"
-              >
-                {link.label}
+        {mobileOpen && (
+          <div className="lg:hidden border-t border-gray-100 bg-white px-6 py-4 space-y-1">
+            {navLinks.map((l) => (
+              <a key={l.label} href={l.href} onClick={() => setMobileOpen(false)}
+                className="block px-4 py-3 text-sm font-medium text-gray-700 hover:text-navy border-b border-gray-50">
+                {l.label}
               </a>
             ))}
-            <button
-              onClick={() => {
-                setMobileNavOpen(false);
-                setDrawerOpen(true);
-              }}
-              className="mt-4 w-full rounded-xl bg-orange py-3 text-sm font-bold text-white"
-            >
-              Nouvelle Commande
-            </button>
+            <div className="pt-3">
+              <a href="/devis" className="block w-full text-center rounded-full bg-navy py-3 text-sm font-bold text-white">
+                OBTENIR UN DEVIS
+              </a>
+            </div>
           </div>
         )}
       </header>

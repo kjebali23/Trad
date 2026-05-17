@@ -51,7 +51,7 @@ export function DevisForm() {
           </p>
           <a
             href="/"
-            className="inline-block rounded-xl bg-orange px-8 py-3.5 text-sm font-bold text-white transition-all hover:bg-orange-light hover:-translate-y-px"
+            className="inline-block rounded-xl bg-gold px-8 py-3.5 text-sm font-bold text-white transition-all hover:bg-gold-light hover:-translate-y-px"
           >
             Retour à l'accueil
           </a>
@@ -64,7 +64,7 @@ export function DevisForm() {
     <div className="bg-cream">
       {/* Hero strip */}
       <div className="bg-navy px-6 py-16 text-center">
-        <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.25em] text-orange-light">Devis gratuit</p>
+        <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.25em] text-gold-light">Devis gratuit</p>
         <h1 className="font-serif text-4xl font-bold text-white mb-3">Demander un devis personnalisé</h1>
         <p className="text-white/60 max-w-lg mx-auto text-base">
           Votre document n'est pas dans notre catalogue standard ? Décrivez votre besoin et recevez un tarif sous 2 heures.
@@ -80,19 +80,19 @@ export function DevisForm() {
               <div>
                 <label className="block text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">Nom complet *</label>
                 <input required value={form.name} onChange={e => set("name", e.target.value)}
-                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-navy outline-none focus:border-orange transition-colors"
+                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-navy outline-none focus:border-gold transition-colors"
                   placeholder="Marie Dupont" />
               </div>
               <div>
                 <label className="block text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">E-mail *</label>
                 <input required type="email" value={form.email} onChange={e => set("email", e.target.value)}
-                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-navy outline-none focus:border-orange transition-colors"
+                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-navy outline-none focus:border-gold transition-colors"
                   placeholder="marie@email.com" />
               </div>
               <div className="sm:col-span-2">
                 <label className="block text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">Téléphone (optionnel)</label>
                 <input value={form.phone} onChange={e => set("phone", e.target.value)}
-                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-navy outline-none focus:border-orange transition-colors"
+                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-navy outline-none focus:border-gold transition-colors"
                   placeholder="+33 6 00 00 00 00" />
               </div>
             </div>
@@ -105,7 +105,7 @@ export function DevisForm() {
               <div>
                 <label className="block text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">Type de document *</label>
                 <select required value={form.docType} onChange={e => set("docType", e.target.value)}
-                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-navy outline-none focus:border-orange transition-colors cursor-pointer appearance-none">
+                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-navy outline-none focus:border-gold transition-colors cursor-pointer appearance-none">
                   <option value="">Sélectionner…</option>
                   {DOC_TYPES.map(d => <option key={d} value={d}>{d}</option>)}
                 </select>
@@ -113,7 +113,7 @@ export function DevisForm() {
               <div>
                 <label className="block text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">Paire de langues *</label>
                 <select required value={form.langPair} onChange={e => set("langPair", e.target.value)}
-                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-navy outline-none focus:border-orange transition-colors cursor-pointer appearance-none">
+                  className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-navy outline-none focus:border-gold transition-colors cursor-pointer appearance-none">
                   <option value="">Sélectionner…</option>
                   {LANG_PAIRS.map(l => <option key={l} value={l}>{l}</option>)}
                 </select>
@@ -121,12 +121,12 @@ export function DevisForm() {
               <div>
                 <label className="block text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">Nombre de pages estimé *</label>
                 <input required type="number" min="1" max="100" value={form.pages} onChange={e => set("pages", e.target.value)}
-                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-navy outline-none focus:border-orange transition-colors" />
+                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-navy outline-none focus:border-gold transition-colors" />
               </div>
               <div>
                 <label className="block text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">Informations complémentaires</label>
                 <textarea value={form.notes} onChange={e => set("notes", e.target.value)} rows={1}
-                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-navy outline-none focus:border-orange transition-colors resize-none"
+                  className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-navy outline-none focus:border-gold transition-colors resize-none"
                   placeholder="Urgence, contexte, administration concernée…" />
               </div>
             </div>
@@ -143,12 +143,12 @@ export function DevisForm() {
               onClick={() => document.getElementById("devis-file")?.click()}
               className={cn(
                 "cursor-pointer rounded-2xl border-2 border-dashed px-6 py-8 text-center transition-all",
-                isDragging ? "border-orange bg-orange/5 scale-[1.01]" : "border-slate-200 hover:border-orange/40 hover:bg-orange/3"
+                isDragging ? "border-gold bg-gold/5 scale-[1.01]" : "border-slate-200 hover:border-gold/40 hover:bg-gold/3"
               )}
             >
-              <Upload className={cn("mx-auto mb-3 h-7 w-7", isDragging ? "text-orange" : "text-slate-300")} />
+              <Upload className={cn("mx-auto mb-3 h-7 w-7", isDragging ? "text-gold" : "text-slate-300")} />
               <p className="text-sm text-slate-500">
-                Glissez votre fichier ici ou <strong className="text-orange">cliquez pour parcourir</strong>
+                Glissez votre fichier ici ou <strong className="text-gold">cliquez pour parcourir</strong>
               </p>
               <p className="mt-1 text-xs text-slate-400">PDF, JPG, PNG · Max 20 MB</p>
               <input id="devis-file" type="file" accept=".pdf,.jpg,.jpeg,.png" multiple className="hidden"
@@ -167,7 +167,7 @@ export function DevisForm() {
           </div>
 
           <button type="submit"
-            className="flex w-full items-center justify-center gap-2 rounded-xl bg-orange py-4 text-sm font-bold text-white shadow-[0_4px_24px_rgba(245,124,0,0.3)] transition-all hover:bg-orange-light hover:-translate-y-0.5">
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-gold py-4 text-sm font-bold text-white shadow-[0_4px_24px_rgba(245,124,0,0.3)] transition-all hover:bg-gold-light hover:-translate-y-0.5">
             <Send className="h-4 w-4" />
             Envoyer ma demande de devis
           </button>

@@ -1,34 +1,50 @@
 import { ProductCard } from "@/components/ProductCard";
 import { PRODUCTS } from "@/lib/products";
 
+// Show only first 4 on homepage, "voir plus" → /services
+const HOME_PRODUCTS = PRODUCTS.slice(0, 4);
+
 export function ProductsSection() {
   return (
-    <section id="products" className="bg-cream px-6 py-20">
+    <section id="services" className="bg-white py-16 px-6">
       <div className="mx-auto max-w-screen-xl">
-        {/* Header */}
-        <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
-          <div>
-            <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.25em] text-orange">
-              Documents
-            </p>
-            <h2 className="font-serif text-3xl font-bold tracking-tight text-navy lg:text-[42px]">
-              Documents les plus demandés
-            </h2>
-            <p className="mt-3 max-w-md text-base leading-relaxed text-slate-500">
-              Traductions certifiées pour vos documents officiels, reconnues par les autorités françaises et européennes.
-            </p>
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-3 mb-4">
+            <div className="h-px w-8 bg-gold" />
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-gold">Nos services</span>
+            <div className="h-px w-8 bg-gold" />
           </div>
-          <div className="text-right">
-            <p className="text-xs text-slate-400">Prix indicatif par document</p>
-            <p className="mt-0.5 text-[10px] text-slate-300">*TVA incluse</p>
-          </div>
+          <h2 className="font-serif text-3xl font-bold text-navy mb-3">
+            Toutes nos traductions sont assermentées et certifiées
+          </h2>
+          <p className="text-gray-500 text-sm max-w-xl mx-auto">
+            Commandez en ligne simplement et rapidement. Livraison PDF sous 48h.
+          </p>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
-          {PRODUCTS.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+          {HOME_PRODUCTS.map((p) => <ProductCard key={p.id} product={p} />)}
+        </div>
+
+        {/* voir plus — links to /services page */}
+        <div className="mt-8 text-center">
+          <a href="/services"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-navy px-8 py-3 text-sm font-bold text-navy hover:bg-navy hover:text-white transition-all">
+            voir plus →
+          </a>
+        </div>
+
+        {/* Devis CTA */}
+        <div className="mt-8 rounded-2xl bg-navy px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+          <div>
+            <div className="text-gold text-xs font-bold uppercase tracking-widest mb-1">Document introuvable ?</div>
+            <h3 className="font-serif text-xl font-bold text-white">Vous ne trouvez pas votre document ?</h3>
+            <p className="text-white/50 text-sm mt-1">Votre combinaison de langue n'est pas proposée ? Devis gratuit, réponse sous 30 minutes.</p>
+          </div>
+          <a href="/devis"
+            className="shrink-0 rounded-full bg-gold px-8 py-3.5 text-sm font-bold text-white hover:bg-gold-light transition-all whitespace-nowrap shadow-[0_4px_16px_rgba(184,150,46,0.35)] hover:-translate-y-0.5">
+            DEMANDEZ UN DEVIS →
+          </a>
         </div>
       </div>
     </section>

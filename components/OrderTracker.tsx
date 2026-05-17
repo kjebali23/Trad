@@ -59,7 +59,7 @@ export function OrderTracker() {
     <div className="bg-cream min-h-[80vh]">
       {/* Hero */}
       <div className="bg-navy px-6 py-16 text-center">
-        <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.25em] text-orange-light">Suivi en ligne</p>
+        <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.25em] text-gold-light">Suivi en ligne</p>
         <h1 className="font-serif text-4xl font-bold text-white mb-3">Suivre ma commande</h1>
         <p className="text-white/60 max-w-md mx-auto mb-10">
           Entrez votre numéro de commande (reçu par e-mail) pour voir l'avancement de votre traduction.
@@ -73,11 +73,11 @@ export function OrderTracker() {
               value={inputVal}
               onChange={e => setInputVal(e.target.value)}
               placeholder="Ex: ORD-2401"
-              className="w-full rounded-xl border border-white/15 bg-white/10 pl-11 pr-4 py-3.5 text-sm text-white placeholder-white/40 outline-none focus:border-orange/60 focus:bg-white/15 transition-all font-mono uppercase"
+              className="w-full rounded-xl border border-white/15 bg-white/10 pl-11 pr-4 py-3.5 text-sm text-white placeholder-white/40 outline-none focus:border-gold/60 focus:bg-white/15 transition-all font-mono uppercase"
             />
           </div>
           <button type="submit"
-            className="rounded-xl bg-orange px-6 py-3.5 text-sm font-bold text-white transition-all hover:bg-orange-light">
+            className="rounded-xl bg-gold px-6 py-3.5 text-sm font-bold text-white transition-all hover:bg-gold-light">
             Rechercher
           </button>
         </form>
@@ -92,7 +92,7 @@ export function OrderTracker() {
       <div className="mx-auto max-w-2xl px-6 py-14">
         {loading && (
           <div className="flex flex-col items-center gap-4 py-20 text-slate-400">
-            <Loader2 className="h-8 w-8 animate-spin text-orange" />
+            <Loader2 className="h-8 w-8 animate-spin text-gold" />
             <p className="text-sm">Recherche en cours…</p>
           </div>
         )}
@@ -112,7 +112,7 @@ export function OrderTracker() {
             <div className="rounded-2xl border border-navy/8 bg-white p-6 shadow-[0_2px_20px_rgba(10,25,47,0.06)]">
               <div className="flex items-start justify-between flex-wrap gap-4 mb-5">
                 <div>
-                  <div className="font-mono text-sm font-bold text-orange mb-1">{order.id}</div>
+                  <div className="font-mono text-sm font-bold text-gold mb-1">{order.id}</div>
                   <div className="font-serif text-xl font-bold text-navy">{order.docType}</div>
                   <div className="text-sm text-slate-400 mt-0.5">{order.langPair} · {order.pages} page{order.pages > 1 ? "s" : ""}</div>
                 </div>
@@ -135,7 +135,7 @@ export function OrderTracker() {
               </div>
               <div className="h-1.5 rounded-full bg-slate-100 overflow-hidden mb-6">
                 <div
-                  className="h-full rounded-full bg-orange transition-all duration-700"
+                  className="h-full rounded-full bg-gold transition-all duration-700"
                   style={{ width: `${((order.status + 1) / STEPS.length) * 100}%` }}
                 />
               </div>
@@ -152,7 +152,7 @@ export function OrderTracker() {
                       <div className={cn(
                         "mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 transition-all",
                         done   ? "border-emerald-500 bg-emerald-500" :
-                        active ? "border-orange bg-orange" :
+                        active ? "border-gold bg-gold" :
                                  "border-slate-200 bg-white"
                       )}>
                         {done ? (
@@ -168,10 +168,10 @@ export function OrderTracker() {
                       <div className="flex-1 pb-4 border-b border-slate-100 last:border-0">
                         <div className={cn(
                           "text-sm font-semibold",
-                          done ? "text-emerald-700" : active ? "text-orange" : "text-navy"
+                          done ? "text-emerald-700" : active ? "text-gold" : "text-navy"
                         )}>
                           {step.label}
-                          {active && <span className="ml-2 text-[10px] font-bold uppercase tracking-widest bg-orange/10 text-orange rounded-full px-2 py-0.5">En cours</span>}
+                          {active && <span className="ml-2 text-[10px] font-bold uppercase tracking-widest bg-gold/10 text-gold rounded-full px-2 py-0.5">En cours</span>}
                           {done  && <span className="ml-2 text-[10px] font-bold uppercase tracking-widest bg-emerald-100 text-emerald-700 rounded-full px-2 py-0.5">✓ Terminé</span>}
                         </div>
                         <p className="text-xs text-slate-400 mt-0.5">{step.desc}</p>
@@ -201,7 +201,7 @@ export function OrderTracker() {
             {/* Help link */}
             <p className="text-center text-sm text-slate-400">
               Un problème avec votre commande ?{" "}
-              <a href="/devis" className="text-orange hover:text-orange-light font-medium transition-colors">
+              <a href="/devis" className="text-gold hover:text-gold-light font-medium transition-colors">
                 Contactez-nous →
               </a>
             </p>

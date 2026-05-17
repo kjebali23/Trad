@@ -1,57 +1,50 @@
-import { ClipboardList, Upload, CreditCard, PhoneCall } from "lucide-react";
+import { ClipboardList, Upload, CreditCard, Mail } from "lucide-react";
 
 const steps = [
-  {
-    num: "01",
-    icon: ClipboardList,
-    label: "Choisir le service",
-  },
-  {
-    num: "02",
-    icon: Upload,
-    label: "Envoyer le PDF",
-  },
-  {
-    num: "03",
-    icon: CreditCard,
-    label: "Paiement sécurisé",
-  },
-  {
-    num: "04",
-    icon: PhoneCall,
-    label: "Recevoir la traduction",
-  },
+  { num:"01", icon: ClipboardList, title:"Sélectionnez votre document", desc:"Choisissez le document, la combinaison de langues et le nombre de pages." },
+  { num:"02", icon: Upload,        title:"Téléversez votre document",  desc:"Nous examinons votre fichier et confirmons la prise en charge par email." },
+  { num:"03", icon: CreditCard,    title:"Payez en ligne",             desc:"Paiement 100% sécurisé par carte bancaire via Stripe (3D Secure)." },
+  { num:"04", icon: Mail,          title:"Recevez votre traduction",   desc:"Livraison de votre traduction officielle par email en 48h au format PDF." },
 ];
 
 export function ProcessBar() {
   return (
-    <div className="relative overflow-hidden bg-orange px-6 py-12">
-      {/* Subtle overlay */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/6 to-transparent" />
+    <section className="bg-white py-16 px-6 border-b border-gray-100">
+      <div className="mx-auto max-w-screen-xl">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-3 mb-4">
+            <div className="h-px w-8 bg-gold" />
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-gold">Comment ça marche</span>
+            <div className="h-px w-8 bg-gold" />
+          </div>
+          <h2 className="font-serif text-3xl font-bold text-navy">Commandez en 4 étapes simples</h2>
+        </div>
 
-      <div className="relative mx-auto grid max-w-5xl grid-cols-2 gap-6 md:grid-cols-4">
-        {steps.map((step, i) => {
-          const Icon = step.icon;
-          return (
-            <div key={step.num} className="group relative flex flex-col items-center text-center">
-              {/* Vertical divider on desktop */}
-              {i < steps.length - 1 && (
-                <div className="absolute right-0 top-6 hidden h-12 w-px -translate-y-1/2 bg-white/25 md:block" />
-              )}
-
-              <div className="mb-3.5 flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15 text-white transition-all group-hover:-translate-y-1 group-hover:bg-white/25">
-                <Icon className="h-6 w-6" strokeWidth={1.8} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {steps.map((step, i) => {
+            const Icon = step.icon;
+            return (
+              <div key={i} className="relative text-center group">
+                {/* Connector line */}
+                {i < steps.length - 1 && (
+                  <div className="hidden lg:block absolute top-10 left-[calc(50%+40px)] right-[-50%] h-px bg-gold/20" />
+                )}
+                {/* Number + icon */}
+                <div className="relative inline-flex">
+                  <div className="flex h-20 w-20 items-center justify-center rounded-full border-2 border-gold/20 bg-gold/5 group-hover:bg-gold/10 group-hover:border-gold/50 transition-all mx-auto">
+                    <Icon className="h-8 w-8 text-gold" strokeWidth={1.5} />
+                  </div>
+                  <span className="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-navy text-[10px] font-bold text-white">
+                    {step.num}
+                  </span>
+                </div>
+                <h3 className="mt-4 font-serif text-[16px] font-bold text-navy leading-snug">{step.title}</h3>
+                <p className="mt-2 text-sm text-gray-500 leading-relaxed">{step.desc}</p>
               </div>
-              <p className="mb-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-white/60">
-                Étape {step.num}
-              </p>
-              <p className="text-[15px] font-semibold text-white leading-snug">
-                {step.label}
-              </p>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

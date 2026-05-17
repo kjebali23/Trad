@@ -1,68 +1,53 @@
-import { ShieldCheck, Clock, Users, Lock } from "lucide-react";
-
-const trustItems = [
-  { icon: ShieldCheck, label: "Certifié ISO 17100" },
-  { icon: Clock, label: "Livraison sous 48h" },
-  { icon: Users, label: "+4 800 clients satisfaits" },
-  { icon: Lock, label: "Paiement sécurisé" },
-];
-
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-navy px-6 py-24 text-center lg:py-32">
-      {/* Grid pattern */}
-      <div className="hero-grid-pattern absolute inset-0 opacity-[0.04]" />
+    <section className="relative min-h-[580px] flex items-center overflow-hidden bg-navy">
+      {/* Background photo overlay */}
+      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1521791136064-7986c2920216?w=1600&q=80')] bg-cover bg-center bg-no-repeat opacity-20" />
+      <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/50" />
 
-      {/* Radial glows */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-0 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-orange/10 blur-3xl" />
-        <div className="absolute bottom-0 right-0 h-[400px] w-[600px] translate-x-1/4 translate-y-1/4 rounded-full bg-navy-light/60 blur-3xl" />
-      </div>
+      <div className="relative mx-auto max-w-screen-xl px-6 py-20 w-full">
+        <div className="max-w-2xl">
+          {/* Gold accent line */}
+          <div className="flex items-center gap-3 mb-6">
+            <div className="h-px w-12 bg-gold" />
+            <span className="text-gold text-xs font-bold uppercase tracking-[0.2em]">Certifié & Assermenté</span>
+          </div>
 
-      <div className="relative mx-auto max-w-4xl">
-        {/* Label pill */}
-        <div className="mb-8 inline-flex animate-[fadeUp_0.6s_ease_both] items-center gap-2 rounded-full border border-orange/25 bg-orange/12 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.15em] text-orange-light">
-          <span className="h-1.5 w-1.5 animate-[pulseDot_2s_infinite] rounded-full bg-orange-light" />
-          ISO 17100 Certifié · Délai 48h
-        </div>
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-[56px] font-bold text-white leading-[1.15] mb-6">
+            Votre traduction<br />
+            <span className="text-gold-light italic">assermentée en ligne</span><br />
+            en moins de 48H
+          </h1>
 
-        {/* H1 */}
-        <h1 className="animate-[fadeUp_0.6s_0.1s_ease_both] mb-6 font-serif text-4xl font-bold leading-[1.15] tracking-[-1.5px] text-white opacity-0 [animation-fill-mode:both] lg:text-6xl">
-          Traductions officielles<br />certifiées par des<br />
-          <em className="italic text-orange-light not-italic">experts assermentés.</em>
-        </h1>
+          <p className="text-white/70 text-base md:text-lg leading-relaxed mb-10 max-w-xl">
+            Nous ne sommes pas seulement une agence de traduction. Quel que soit le destinataire de vos textes internationaux, nous vous garantissons la meilleure solution. Toutes les langues. Vous pouvez compter sur nous.
+          </p>
 
-        {/* Subheadline */}
-        <p className="animate-[fadeUp_0.6s_0.2s_ease_both] mx-auto mb-11 max-w-xl text-base leading-relaxed text-white/70 opacity-0 [animation-fill-mode:both] lg:text-lg">
-          Service de traduction juridiquement reconnue par des traducteurs assermentés agréés. Accepté dans tous les consulats, préfectures et universités.
-        </p>
+          <div className="flex flex-wrap gap-4">
+            <a href="#services"
+              className="inline-flex items-center gap-2 rounded-full bg-gold px-8 py-4 text-sm font-bold text-white hover:bg-gold-light transition-all hover:-translate-y-0.5 shadow-[0_4px_20px_rgba(184,150,46,0.4)]">
+              Commander
+            </a>
+            <a href="/devis"
+              className="inline-flex items-center gap-2 rounded-full border-2 border-white/30 px-8 py-4 text-sm font-bold text-white hover:border-gold hover:text-gold transition-all">
+              Demander un Devis
+            </a>
+          </div>
 
-        {/* CTA Buttons */}
-        <div className="animate-[fadeUp_0.6s_0.3s_ease_both] flex flex-wrap justify-center gap-3.5 opacity-0 [animation-fill-mode:both]">
-          <a
-            href="#products"
-            className="rounded-xl bg-orange px-8 py-4 text-sm font-bold text-white shadow-[0_4px_24px_rgba(245,124,0,0.35)] transition-all hover:-translate-y-0.5 hover:bg-orange-light hover:shadow-[0_8px_32px_rgba(245,124,0,0.45)]"
-          >
-            Commander Maintenant
-          </a>
-          <a
-            href="/devis"
-            className="rounded-xl border-[1.5px] border-white/30 bg-transparent px-8 py-4 text-sm font-bold text-white transition-all hover:-translate-y-0.5 hover:border-white/60 hover:bg-white/6"
-          >
-            Demander un Devis
-          </a>
-        </div>
-
-        {/* Trust indicators */}
-        <div className="animate-[fadeUp_0.6s_0.4s_ease_both] mt-14 flex flex-wrap justify-center gap-6 opacity-0 [animation-fill-mode:both]">
-          {trustItems.map(({ icon: Icon, label }) => (
-            <div key={label} className="flex items-center gap-2.5 text-sm text-white/70">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/8 text-orange-light">
-                <Icon className="h-4 w-4" />
+          {/* Stats row */}
+          <div className="mt-14 flex flex-wrap gap-8">
+            {[
+              { value: "48H", label: "Délai de livraison" },
+              { value: "20+", label: "Langues couvertes" },
+              { value: "1500+", label: "Entreprises clientes" },
+              { value: "100%", label: "Assermentées" },
+            ].map(({ value, label }) => (
+              <div key={label}>
+                <div className="text-2xl font-bold text-gold font-serif">{value}</div>
+                <div className="text-xs text-white/50 mt-0.5">{label}</div>
               </div>
-              {label}
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -1,67 +1,47 @@
 import { RefreshCw, Shield, Lock, Clock } from "lucide-react";
 
-const GUARANTEES = [
-  {
-    icon: RefreshCw,
-    title: "Reprise gratuite",
-    desc: "Si votre traduction est refusée par une administration pour une erreur de notre part, nous la refaisons intégralement et gratuitement, sans délai.",
-    accent: "text-emerald-400",
-    bg: "bg-emerald-400/10",
-    border: "border-emerald-400/15",
-  },
-  {
-    icon: Shield,
-    title: "Conformité RGPD",
-    desc: "Vos documents personnels sont traités dans le respect strict du RGPD. Connexion SSL chiffrée, aucune revente de données, suppression automatique sous 30 jours.",
-    accent: "text-blue-400",
-    bg: "bg-blue-400/10",
-    border: "border-blue-400/15",
-  },
-  {
-    icon: Lock,
-    title: "Paiement 100 % sécurisé",
-    desc: "Règlement par carte bancaire via Stripe (3D Secure). Vos coordonnées bancaires ne transitent jamais sur nos serveurs.",
-    accent: "text-purple-400",
-    bg: "bg-purple-400/10",
-    border: "border-purple-400/15",
-  },
-  {
-    icon: Clock,
-    title: "Livraison garantie 48h",
-    desc: "Votre traduction certifiée vous est envoyée par email au format PDF dans un délai maximal de 48 heures ouvrées après réception de votre commande.",
-    accent: "text-orange-400",
-    bg: "bg-orange-400/10",
-    border: "border-orange-400/15",
-  },
+const items = [
+  { icon: RefreshCw, title:"Reprise gratuite",     desc:"Si votre traduction est refusée par une administration pour une erreur de notre part, nous la refaisons intégralement et gratuitement." },
+  { icon: Shield,    title:"Conformité RGPD",       desc:"Vos documents sont traités dans le respect strict du RGPD. Connexion SSL, aucune revente de données, suppression sous 30 jours." },
+  { icon: Lock,      title:"Paiement sécurisé",     desc:"Règlement par carte via Stripe 3D Secure. Vos coordonnées bancaires ne transitent jamais sur nos serveurs." },
+  { icon: Clock,     title:"Livraison 48h garantie",desc:"Votre traduction certifiée PDF vous est envoyée par email dans un délai maximal de 48 heures ouvrées." },
 ];
 
 export function GuaranteesSection() {
   return (
-    <section className="bg-cream-dark px-6 py-20">
+    <section className="bg-navy py-16 px-6">
       <div className="mx-auto max-w-screen-xl">
-        <div className="mb-12 text-center max-w-2xl mx-auto">
-          <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.25em] text-orange">
-            Nos engagements
-          </p>
-          <h2 className="font-serif text-3xl font-bold tracking-tight text-navy lg:text-[42px]">
-            Commandé avec confiance
-          </h2>
-          <p className="mt-3 text-base leading-relaxed text-slate-500">
-            Quatre garanties concrètes pour commander sans stress.
-          </p>
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-3 mb-4">
+            <div className="h-px w-8 bg-gold" />
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-gold">Nos engagements</span>
+            <div className="h-px w-8 bg-gold" />
+          </div>
+          <h2 className="font-serif text-3xl font-bold text-white">Commandé avec confiance</h2>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {items.map(({ icon: Icon, title, desc }) => (
+            <div key={title} className="group rounded-2xl border border-white/8 bg-white/4 p-6 hover:border-gold/30 hover:bg-white/7 transition-all">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-gold/30 bg-gold/10">
+                <Icon className="h-5 w-5 text-gold" strokeWidth={1.8} />
+              </div>
+              <h3 className="font-serif text-base font-bold text-white mb-2">{title}</h3>
+              <p className="text-sm text-white/50 leading-relaxed">{desc}</p>
+            </div>
+          ))}
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {GUARANTEES.map(({ icon: Icon, title, desc, accent, bg, border }) => (
-            <div
-              key={title}
-              className={`group rounded-2xl border bg-white p-6 shadow-[0_2px_20px_rgba(10,25,47,0.06)] transition-all hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(10,25,47,0.12)] ${border}`}
-            >
-              <div className={`mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl ${bg}`}>
-                <Icon className={`h-5 w-5 ${accent}`} strokeWidth={1.8} />
-              </div>
-              <h3 className="mb-2 font-serif text-[17px] font-bold text-navy">{title}</h3>
-              <p className="text-[13px] leading-relaxed text-slate-500">{desc}</p>
+        {/* Trust icons row */}
+        <div className="mt-12 pt-10 border-t border-white/8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          {[
+            { label:"Traduction assermentée", sub:"Au format PDF" },
+            { label:"Validité France & Étranger", sub:"Reconnue partout" },
+            { label:"Livraison sous 48h", sub:"Par email en PDF" },
+            { label:"Paiement sécurisé", sub:"SSL · Stripe" },
+          ].map(({ label, sub }) => (
+            <div key={label}>
+              <div className="text-sm font-semibold text-white mb-0.5">{label}</div>
+              <div className="text-xs text-white/40">{sub}</div>
             </div>
           ))}
         </div>
